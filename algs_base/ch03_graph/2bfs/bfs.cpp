@@ -10,7 +10,7 @@ typedef pair<int, int> PII;
 int n, m;
 int g[N][N];
 int d[N][N];
-PII q[N * N], pred[N][N];
+PII q[N * N], pred[N][N]; //存储坐标
 
 int bfs()
 {
@@ -28,7 +28,7 @@ int bfs()
             int x = t.first + dx[i], y = t.second + dy[i];
             if (x >= 0 && x < n && y >= 0 && y < m && g[x][y] == 0 && d[x][y] == -1)
             {
-                // 上下路径可以走，并且没走过，距离+1
+                // 上下路径可以走，并且没走过，往外走，离+1
                 d[x][y] = d[t.first][t.second] + 1;
                 // 当前节点加入队列
                 pred[x][y] = t;
@@ -37,13 +37,13 @@ int bfs()
         }
     }
     //打印路径
-    // int x = n - 1, y = m - 1;
-    // while (x || y)
-    // {
-    //     cout << x << ' ' << y << endl;
-    //     auto t = pred[x][y];
-    //     x = t.first, y = t.second;
-    // }
+    int x = n - 1, y = m - 1;
+    while (x || y)
+    {
+        cout << x << ' ' << y << endl;
+        auto t = pred[x][y];
+        x = t.first, y = t.second;
+    }
     return d[n - 1][m - 1];
 }
 
