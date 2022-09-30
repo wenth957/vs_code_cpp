@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int N = 100010, M = 10010;
+const int N = 1000010, M = 100010;
 int n, m;
 char s[N], p[M];
 int ne[M];
