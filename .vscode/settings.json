@@ -6,7 +6,10 @@
         "string": "cpp",
         "array": "cpp",
         "*.tcc": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "bitset": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
