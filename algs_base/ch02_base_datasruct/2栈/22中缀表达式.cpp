@@ -1,71 +1,72 @@
 #include <iostream>
-#include <cstring>
+#include <string>
 #include <algorithm>
 #include <stack>
 #include <unordered_map>
+/*
+（1+1）*（2 + 2）
+优先处理括号
+*/
 
 using namespace std;
 
-stack<int> num;
-stack<int> op;
+stack<int> nums;
+stack<char> ops;
+unordered_map<char, int> pr{{'+', 1}, {'-', 1}, {'*', 2}, {'/', 2}};
 
 void eval()
 {
-    auto b = num.top();
-    num.pop();
-    auto a = num.top();
-    num.pop();
-    auto c = op.top();
-    op.pop();
-    int x;
+    int b = nums.top();
+    nums.pop();
+    int a = nums.top();
+    nums.pop();
+    char c = ops.top();
+    ops.pop();
     if (c == '+')
-        x = a + b;
+        nums.push(a + b);
     else if (c == '-')
-        x = a - b;
+        nums.push(a - b);
     else if (c == '*')
-        x = a * b;
+        nums.push(a * b);
     else
-        x = a / b;
-    num.push(x);
+        nums.push(a / b);
 }
 
 int main()
 {
-    unordered_map<char, int> pr{
-        {'+', 1}, {'-', 1}, {'*', 2}, {'/', 2}};
-    string str;
-    cin >> str;
-    for (int i = 0; i < str.size(); i++)
+    string s;
+    cin >> s;
+    for (int i = 0; i < s.size(); i++)
     {
-        auto c = str[i];
-        if (isdigit(c))
+        auto v = s[i];
+        if (isdigit(v))
         {
-            // 处理多位数
             int x = 0, j = i;
-            while (j < str.size() && isdigit(str[j]))
-                x = x * 10 + str[j++] - '0';
-            i = j - 1; //更新i到最后一位数字
-            num.push(x);
+            while (j < s.size() && isdigit(s[j]))
+            {
+                x = x * 10 + s[j++] - '0';
+            }
+            i = j - 1;
+            nums.push(x);
         }
-        // 优先处理括号
-        else if (c == '(')
-            op.push(c);
-        else if (c == ')')
+        else if (v == '(')
+            ops.push(v);
+        else if (v == ')')
         {
-            //一直处理到左括号/当成一个新表达式即可
-            while (op.top() != '(')
+            while (ops.top() != '(')
                 eval();
-            op.pop(); //弹出左括号
+            ops.pop();
         }
         else
         {
-            while (op.size() && pr[op.top()] >= pr[c])
+            //如果是运算符，判断是否顺序小于栈顶元素
+            while (ops.size() && pr[ops.top()] >= pr[v])
                 eval();
-            op.push(c); //新的运算符入栈
+            ops.push(v);
         }
     }
-    while (op.size())
-        eval(); //处理中间结果
-    cout << num.top() << endl;
+    while (ops.size())
+        eval();
+    cout << nums.top() << endl;
     return 0;
 }
