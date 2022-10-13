@@ -23,7 +23,7 @@ void add_to_head(int x)
 
 void add(int k, int x)
 {
-    // 在idx=k的后面插入一个元素
+    // 在k的后面插入一个元素（插入顺序）
     e[idx] = x;      // 记录第idx个节点
     ne[idx] = ne[k]; // idx的next指向k的next
     ne[k] = idx;   // k的next指向idx
@@ -32,7 +32,7 @@ void add(int k, int x)
 
 void remove(int k)
 {
-    // 移除idx=k后面的元素 k.next = k.next.next
+    // 移除k后面的元素 k.next = k.next.next
     ne[k] = ne[ne[k]];
 }
 int main()
