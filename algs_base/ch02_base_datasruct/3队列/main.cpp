@@ -1,29 +1,59 @@
 #include <iostream>
-#include <string>
 
 using namespace std;
+const int N = 100010;
+int queue[N], hh, tt = -1;
 
-const int N = 1000010;
-int hh,tt=-1;
-int queue[N];
-
-void insert(int x)
+void push(int x)
 {
-    q[++tt] = x;
+    queue[++tt] = x;
 }
 
-int pop()
+void pop(int x)
 {
-    hh ++;
+    tt--;
+}
+
+bool empty()
+{
+    if (tt != -1 && hh <= tt)
+        return false;
+    return true;
+}
+
+int query()
+{
+    if (tt != -1 && hh <= tt)
+        return queue[hh];
+    else
+        return -1;
 }
 
 int main()
 {
     int m;
     cin >> m;
-    while (m --)
+    while (m--)
     {
-
+        string op;
+        cin >> op;
+        if (op == "push")
+        {
+            int x;
+            cin >> x;
+            push(x);
+        }
+        else if (op == "pop")
+            hh++;
+        else if (op == "empty")
+        {
+            if (empty())
+                cout << "YES" << endl;
+            else
+                cout << "NO" << endl;
+        }
+        else
+            cout << query() << endl;
     }
-
+    return 0;
 }
