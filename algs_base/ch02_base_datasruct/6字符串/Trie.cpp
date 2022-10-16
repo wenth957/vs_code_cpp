@@ -14,9 +14,9 @@ void insert(char str[])
     for (int i = 0; str[i]; i++)
     {
         int u = str[i] - 'a';
-        if (!son[p][u])
-            son[p][u] = ++idx; //创建新的节点
-        p = son[p][u];
+        if (!son[p][u])         //是否有u作为子节点
+            son[p][u] = ++idx;   //创建新的节点
+        p = son[p][u];         //存在u这个节点，走到u，看u是否有下一个节点
     }
     cnt[p]++;
 }

@@ -9,8 +9,8 @@ int a[N], b[N];
 
 void insert(int l, int r, int c)
 {
-	b[l] += c;
-	b[r + 1] -= c;
+	b[l] += c;	   // al-ar加上c
+	b[r + 1] -= c; // r+1后面的不能加上c
 }
 int main()
 {
