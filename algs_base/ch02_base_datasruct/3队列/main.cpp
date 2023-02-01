@@ -11,7 +11,7 @@ void push(int x)
 
 void pop(int x)
 {
-    tt--;
+    hh++;
 }
 
 bool empty()

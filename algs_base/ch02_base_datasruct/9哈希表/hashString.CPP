@@ -19,7 +19,7 @@ ULL h[N], p[N];
 ULL get(int l, int r)
 {
     // unsined long long 会自动对结果进行取模操作
-    return h[r] - h[l] * p[r - l + 1];
+    return h[r] - h[l - 1] * p[r - l + 1];
 }
 int main()
 {
@@ -27,7 +27,7 @@ int main()
     p[0] = 1;
     for (int i = 1; i <= n; i++)
     {
-        p[i] = p[i + 1] * P;          // 提前存储p的幂
+        p[i] = p[i - 1] * P;          // 提前存储p的幂
         h[i] = h[i - 1] * P + str[i]; // 前缀哈希值计算，类比二进制
     }
     while (m--)

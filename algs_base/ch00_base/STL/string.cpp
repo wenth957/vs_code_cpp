@@ -8,8 +8,7 @@ using namespace std;
 
 int main()
 {
-    /*
-    size()/length() empty() clear()*/
+    /*size() length() empty() clear()*/
     string a = "wpw";
     a += "def";
     a += 'c';

@@ -59,7 +59,7 @@ int main()
         }
         else
         {
-            //如果是运算符，判断是否顺序小于栈顶元素
+            // 如果是运算符，判断是否顺序小于栈顶元素
             while (ops.size() && pr[ops.top()] >= pr[v])
                 eval();
             ops.push(v);

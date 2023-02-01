@@ -16,7 +16,7 @@ int find(int x)
 }
 
 int main()
-{ 
+{
     scanf("%d%d", &n, &m);
     // 每个点都是一个集合，其父节点=自己
     for (int i = 1; i <= n; i++)

@@ -12,8 +12,8 @@ int main()
     /*
     size() empty() clear() begin() end() ++ --
     insert() 插入一个数
-    find() 不存在返回end迭代器
-    count() 查找一个数的个数
+    find()  不存在返回end迭代器
+    count() 查找一个元素的个数
     erase()
      (1)输入2 删除等于2的所有结点 logn
      (2)输入迭代器，删除这个迭代器
